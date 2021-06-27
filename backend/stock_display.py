@@ -1,6 +1,5 @@
 from alpha_vantage.timeseries import TimeSeries
 
-
 class StockDisplay():
     def __init__(self, stockName, timePeriod):
         self.apiKey = 'T6VFDMV26J1LQK5K'

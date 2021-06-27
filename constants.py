@@ -1,0 +1,1 @@
+TIME_PERIODS = ["interday", "daily", "weekly", "monthly"]
