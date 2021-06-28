@@ -1,6 +1,8 @@
 import tkinter as tk
 from backend import stock_display as sd
 import constants
+from . import stock_indicators_screen as sis
+from . import compare_stocks_screen as css
     
 class TrackStockScreen(tk.Frame) :
     def __init__(self, master) :
@@ -13,7 +15,7 @@ class TrackStockScreen(tk.Frame) :
         self.stock_entry.grid(row=1, column=0, sticky=tk.S+tk.N+tk.W+tk.E)
 
         self.var = tk.StringVar()
-        self.var.set(1)
+        self.var.set(0)
         for i in range(0, len(constants.TIME_PERIODS)):
             tk.Radiobutton(self.master, text=constants.TIME_PERIODS[i], 
                            variable=self.var, value=i).grid(row=i, column=1, sticky=tk.W)
@@ -25,10 +27,12 @@ class TrackStockScreen(tk.Frame) :
         
         
     def search_ticker(self) :
-        sd.StockDisplay(self.stock_entry.get(), "interday").stockData()
+        # TODO: implement the plotting
+        print("stub")
 
 
 # TODO: move menu to a new class instead
+# TODO: implement the ability to return to the previous menu
 class StockTraderTkinterGui(tk.Frame) :
     def __init__(self, master=None) :
         super().__init__(master)
@@ -72,11 +76,9 @@ class StockTraderTkinterGui(tk.Frame) :
         self.switch_to_frame(screen)
         
     def start_stock_indicators_menu(self) :
-        # TODO: Implement this menu item
-        print("stub")
+        self.switch_to_frame(sis.StockIndicatorsScreen(self.master))
         
     def start_compare_stocks_menu(self) :
-        # TODO: Implement this menu item
-        print("stub")
+        self.switch_to_frame(css.CompareStocksScreen(self.master))
 
         
