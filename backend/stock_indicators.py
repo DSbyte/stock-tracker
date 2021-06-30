@@ -11,12 +11,11 @@ class StockIndicators():
     def stockIndicators(self):
         ti = TechIndicators(key=self.apiKey, output_format='pandas')
 
-        if (self.stockIndi == "sma"):
-            ts = TimeSeries(key=self.apiKey, output_format='pandas')
-            data, meta_data = ts.get_monthly(symbol=self.stockName)
-            dataIndi, meta_dataIndi = ti.get_sma(symbol=self.stockName, time_period=30)
+        ts = TimeSeries(key=self.apiKey, output_format='pandas')
+        data, meta_data = ts.get_monthly(symbol=self.stockName)
+        dataIndi, meta_dataIndi = ti.get_sma(symbol=self.stockName, time_period=30)
 
-        elif (self.stockIndi == "ema"):
+        if (self.stockIndi == "ema"):
             ts = TimeSeries(key=self.apiKey, output_format='pandas')
             data, meta_data = ts.get_monthly(symbol=self.stockName)
             dataIndi, meta_dataIndi = ti.get_ema(symbol=self.stockName, time_period=30)

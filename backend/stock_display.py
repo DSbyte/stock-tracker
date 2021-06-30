@@ -8,9 +8,8 @@ class StockDisplay():
     
     def stockData(self):
         ts = TimeSeries(key=self.apiKey, output_format='pandas')
-        if (self.timePeriod == "interday"):
-            data, meta_data = ts.get_intraday(symbol=self.stockName)
-        elif (self.timePeriod == "daily"):
+        data, meta_data = ts.get_intraday(symbol=self.stockName)
+        if (self.timePeriod == "daily"):
             data, meta_data = ts.get_daily(symbol=self.stockName)
         elif (self.timePeriod == "weekly"):
             data, meta_data = ts.get_weekly(symbol=self.stockName)

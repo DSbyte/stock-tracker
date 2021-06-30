@@ -1,5 +1,6 @@
 import constants 
 import tkinter as tk
+from . import error_stock_display as esd
 
 class CompareStocksScreen(tk.Frame) :
     def __init__(self, master) :
@@ -15,7 +16,7 @@ class CompareStocksScreen(tk.Frame) :
 
         self.var = tk.StringVar()
         self.var.set(0)
-        for i in range(0, len(constants.TIME_PERIODS)):
+        for i in range(0, self.max_row_size):
             tk.Radiobutton(self.master, text=constants.TIME_PERIODS[i], 
                            variable=self.var, value=i).grid(row=i, column=2, sticky=tk.W)
             
@@ -34,7 +35,10 @@ class CompareStocksScreen(tk.Frame) :
         self.stock_entry.grid(row=1, column=col_to_build, sticky=tk.S+tk.N+tk.W+tk.E)
             
     def search_ticker(self) :
-        # TODO: implement the plotting
-        print("stub")
-        
+        try :
+            self.data, self.indicator = si.StockIndicators(self.stock_entry.get(),
+                                                          ).stockIndicators()
+        except ValueError :
+            error_label = esd.StockNameErrorLabel(self.stock_entry.get())
+            error_label.grid(row=(self.max_row_size / 2) + 2, column=0)
         
