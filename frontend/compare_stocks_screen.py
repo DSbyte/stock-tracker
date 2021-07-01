@@ -37,15 +37,17 @@ class CompareStocksScreen(tk.Frame) :
             
     def search_ticker(self) :
         stock_name_this = self.stockThis.get()
+        data_this = None
         try :
-            data = sd.StockDisplay(stock_name_this, constants.TIME_PERIODS[0])
+            data_this = sd.StockDisplay(stock_name_this, constants.TIME_PERIODS[0]).stockData()
         except ValueError :
             stock_error_label = esd.StockNameErrorLabel(self.master, stock_name_this)
             stock_error_label.grid(row=self.mid+1, column=0)
         
         stock_name_other = self.stockOther.get()
+        data_other = None
         try :
-            data = sd.StockDisplay(stock_name_other, constants.TIME_PERIODS[0])
+            data_other = sd.StockDisplay(stock_name_other, constants.TIME_PERIODS[0]).stockData()
         except ValueError :
             stock_error_label = esd.StockNameErrorLabel(self.master, stock_name_other)
             stock_error_label.grid(row=self.mid+1, column=1)
