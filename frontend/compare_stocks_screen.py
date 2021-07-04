@@ -6,11 +6,15 @@ from . import error_stock_display as esd
 class CompareStocksScreen(tk.Frame) :
     def __init__(self, master) :
         tk.Frame.__init__(self, master)
+        self.max_row_size = len(constants.TIME_PERIODS)
         self.master = master
         self.start()
+        for i in range(0, 2) :
+            self.master.columnconfigure(i, weight=1)
+        for i in range(0, self.max_row_size) :
+            self.master.rowconfigure(i, weight=1)
         
     def start(self) :
-        self.max_row_size = len(constants.TIME_PERIODS)
         self.mid = int(self.max_row_size / 2) - 1
 
         self.var = tk.StringVar()
@@ -32,7 +36,7 @@ class CompareStocksScreen(tk.Frame) :
     def build_stock_layout(self, col_to_build, label_text) :
         label = tk.Label(self.master, text=label_text).grid(row=0, column=col_to_build)
         stock_entry = tk.Entry(self.master)
-        stock_entry.grid(row=self.mid, column=col_to_build, sticky=tk.S+tk.N+tk.W+tk.E)
+        stock_entry.grid(row=self.mid, column=col_to_build, sticky=tk.W+tk.E)
         return stock_entry
             
     def search_ticker(self) :

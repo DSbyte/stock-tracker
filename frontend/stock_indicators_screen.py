@@ -2,15 +2,19 @@ import constants
 import tkinter as tk
 from backend import stock_indicators as si
 from . import error_stock_display as esd
+from . import sizing_helper as sh
 
 class StockIndicatorsScreen(tk.Frame) :
     def __init__(self, master) :
         tk.Frame.__init__(self, master)
+        self.max_row_size = len(constants.STOCK_INDICATORS)
         self.master = master
         self.start()
+        for i in range(0, self.max_row_size) :
+            self.master.rowconfigure(i, weight=1)
+        self = sh.reconfigure_grid_cols_rows(self)
         
     def start(self) :
-        self.max_row_size = len(constants.STOCK_INDICATORS)
         self.mid = int(self.max_row_size / 2) - 1
         
         self.stock_entry = tk.Entry(self.master)

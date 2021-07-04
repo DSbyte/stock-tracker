@@ -11,10 +11,9 @@ class TrackStockScreen(tk.Frame) :
     def __init__(self, master) :
         super().__init__(master)
         self.master = master
-        self.master.columnconfigure(0, weight=1)
+        self.start()
         for i in range(0, 3) :
             self.master.rowconfigure(i, weight=1)
-        self.start()
         self = sh.reconfigure_grid_cols_rows(self)
 
         

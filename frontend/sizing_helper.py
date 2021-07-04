@@ -2,7 +2,6 @@ import constants
 
 def reconfigure_grid_cols_rows(frame) :
     grid_size = frame.grid_size()
-    print(grid_size)
     for x in range(0, grid_size[0]) :
         frame.grid_columnconfigure(x, weight=1)
     for y in range(0, grid_size[1]) :
